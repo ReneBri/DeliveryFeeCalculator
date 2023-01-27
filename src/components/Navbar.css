@@ -1,0 +1,25 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: grey;
+    padding: 0 40px;
+}
+
+.nav-container ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-container li:last-child {
+    border-left: 1px solid black;
+    padding: 0 19px;
+}
+
+.nav-container li {
+    padding: 0 20px;
+}
+
+.nav-container a {
+    text-decoration: none;
+}
