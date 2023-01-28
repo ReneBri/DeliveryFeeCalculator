@@ -1,0 +1,22 @@
+.card {
+    border: 1px solid black;
+}
+
+.card-image {
+    position: relative;
+    background: black;
+}
+
+.card-image img {
+    opacity: 1;
+    transition: .7s;
+}
+
+.card-image img:hover {
+    opacity: 0.5;
+    transition: .7s;
+}
+
+.item-text {
+    padding: 10px 20px 20px 20px;
+}
