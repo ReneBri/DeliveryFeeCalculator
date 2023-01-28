@@ -2,6 +2,7 @@ import './Home.css'
 import MenuItem from '../../components/MenuItem'
 import FeeCalculator from '../../components/FeeCalculator'
 import { useState } from 'react'
+import CustomerSelection from '../../components/CustomerSelection'
 
 export default function Home() {
 
@@ -38,16 +39,20 @@ export default function Home() {
         }
 ]
 
-    const [customerSelection, setCustomerSelection] = useState([])
+    const [customerSelection, setCustomerSelection] = useState(null)
+    console.log(customerSelection)
     
     return (
         <div className="content-container">
             <h1>HOME</h1>
             <p>Yummm! Check out our delicious new food!</p>
             <div className="order-body">
-                <MenuItem items={items}/>
+                <CustomerSelection customerSelection={customerSelection} />
+                <MenuItem items={items} setCustomerSelection={setCustomerSelection} customerSelection={customerSelection} />
                 <FeeCalculator />
+                
             </div>
+            
         </div>
         
     )

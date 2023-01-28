@@ -1,0 +1,9 @@
+.customer-selection-container {
+    max-width: 20vw;
+    min-width: 15vw;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+}

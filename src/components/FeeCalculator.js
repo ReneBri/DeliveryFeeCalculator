@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, React, useEffect } from 'react'
 import './FeeCalculator.css'
 
 export default function FeeCalculator() {
@@ -56,19 +56,23 @@ export default function FeeCalculator() {
 
         <div className="delivery-totals">
             <table>
-                <tr>
-                    <th>Food:</th>
-                    <th>XXXXX€</th>
-                </tr>
-                <tr>
-                    <th>Delivery:</th>
-                    <th>XXXXX€</th>
-                </tr>
-                <tr>
-                    <th>Total:</th>
-                    <th>XXXXX€</th>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>Food:</td>
+                        <td>XXXXX€</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery:</td>
+                        <td>XXXXX€</td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td>XXXXX€</td>
+                    </tr>
+                </tbody>
             </table>
+        </div>
+        <div className="customer-selection">
         </div>
     </div>
   )

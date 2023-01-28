@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import './MenuItem.css'
 
-export default function MenuItem({items}) {
+export default function MenuItem({items, setCustomerSelection, customerSelection}) {
 
+    const handleClick = (item) => {
+        setCustomerSelection((prevSelection) => {
+            if(prevSelection == null){
+                return [item]
+            }else{
+            return [...prevSelection, item]
+            }
+        })
+    console.log(customerSelection)}
 
   return (
     <div className="menu-container">
@@ -14,9 +23,9 @@ export default function MenuItem({items}) {
                         <hr></hr>
                         <p>{item.description}</p>
                         <p>${item.price}</p>
-                        <button>Add Item</button>
+                        <button onClick={() => handleClick(item)}>Add Item</button>
                     </div>
-                    <img src={item.imgUrl}/>     
+                    <img src={item.imgUrl} alt="burger-img"/>     
                 </div>
             </React.Fragment>
         ))}
