@@ -1,13 +1,21 @@
 import { useState, React, useEffect } from 'react'
 import './FeeCalculator.css'
 
-export default function FeeCalculator() {
+export default function FeeCalculator({customerSelection}) {
 
     const [cartValue, setCartValue] = useState(0)
     const [deliveryDistance, setDeliveryDistance] = useState(0)
     const [numberOfItems, setNumberOfItems] = useState(0)
     const [orderTime, setOrderTime] = useState("")
     
+    useEffect(() => {
+        if(customerSelection){
+            setNumberOfItems(customerSelection.length)
+            setCartValue(customerSelection.reduce((acc, curr) => {
+                return acc + curr.price
+            }, 0))
+        }
+    }, [customerSelection])
 
   return (
     <div className="fee-calculator">
@@ -59,7 +67,7 @@ export default function FeeCalculator() {
                 <tbody>
                     <tr>
                         <td>Food:</td>
-                        <td>XXXXX€</td>
+                        <td>{cartValue}€</td>
                     </tr>
                     <tr>
                         <td>Delivery:</td>
