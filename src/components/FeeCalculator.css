@@ -1,6 +1,7 @@
 .fee-calculator {
     max-width: 20vw;
     min-width: 15vw;
+    padding: 20px 0;
 }
 
 .fee-calculator form {
