@@ -51,7 +51,7 @@ export default function Home() {
             <div className="order-body">
                 <CustomerSelection customerSelection={customerSelection} />
                 <MenuItem items={items} setCustomerSelection={setCustomerSelection} customerSelection={customerSelection} />
-                <FeeCalculator />
+                <FeeCalculator customerSelection={customerSelection}/>
                 
             </div>
             
