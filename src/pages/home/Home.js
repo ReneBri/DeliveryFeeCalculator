@@ -1,6 +1,7 @@
 import './Home.css'
 import MenuItem from '../../components/MenuItem'
 import FeeCalculator from '../../components/FeeCalculator'
+import { useState } from 'react'
 
 export default function Home() {
 
@@ -36,6 +37,8 @@ export default function Home() {
             imgUrl: "/cheeseburger.webp"
         }
 ]
+
+    const [customerSelection, setCustomerSelection] = useState([])
     
     return (
         <div className="content-container">
