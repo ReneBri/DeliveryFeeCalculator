@@ -1,5 +1,6 @@
 import './Home.css'
 import MenuItem from '../../components/MenuItem'
+import FeeCalculator from '../../components/FeeCalculator'
 
 export default function Home() {
 
@@ -40,7 +41,10 @@ export default function Home() {
         <div className="content-container">
             <h1>HOME</h1>
             <p>Yummm! Check out our delicious new food!</p>
+            <div className="order-body">
                 <MenuItem items={items}/>
+                <FeeCalculator />
+            </div>
         </div>
         
     )

@@ -1,4 +1,6 @@
-.content-container {
-    display: grid;
+.order-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 0 20px;
 }

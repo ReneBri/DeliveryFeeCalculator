@@ -1,0 +1,27 @@
+.fee-calculator {
+    max-width: 400px;
+}
+
+.fee-calculator form {
+    display: flex;
+    flex-direction: column;
+}
+
+.fee-calculator form label {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fee-calculator form button {
+    margin-top: 20px;
+}
+
+.fee-calculator form label p {
+    margin: 0;
+}
+
+.delivery-totals {
+    text-align: left;
+    padding-top: 10px
+}
