@@ -1,9 +1,24 @@
 .customer-selection-container {
-    max-width: 20vw;
+    max-width: 15vw;
     min-width: 15vw;
+    max-height: 70vh;
+    overflow: scroll;
 }
 
 .item-container {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.item-container p {
+    margin: 12px 0;
+}
+
+.item-container:first-child {
+    border-top: 1px solid black;
+}
+
+.customer-selection-container::-webkit-scrollbar {
+    display: none;
 }
