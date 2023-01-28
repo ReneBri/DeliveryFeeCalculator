@@ -1,22 +1,32 @@
-.card {
-    border: 1px solid black;
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    max-height: 70vh;
+    padding: 20px 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow: scroll;
 }
 
-.card-image {
+.card {
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.card:last-child {
+    border-bottom: 1px solid black;
+}
+
+.card img {
     position: relative;
     background: black;
-}
-
-.card-image img {
-    opacity: 1;
-    transition: .7s;
-}
-
-.card-image img:hover {
-    opacity: 0.5;
-    transition: .7s;
+    max-height: 200px;
 }
 
 .item-text {
     padding: 10px 20px 20px 20px;
+    text-align: left;
 }
