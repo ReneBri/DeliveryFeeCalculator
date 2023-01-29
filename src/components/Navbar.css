@@ -4,6 +4,13 @@
     align-items: center;
     background: grey;
     padding: 0 40px;
+    background-color: var(--wolt-blue);
+    border-bottom: rgba(255, 255, 255, 0.4) solid 1px;
+}
+
+.nav-container h2 {
+    color: var(--cb-surfaceMain);
+    text-shadow: 1px 1px 1px var(--cb-textSecondary);
 }
 
 .nav-container ul {
@@ -12,7 +19,7 @@
 }
 
 .nav-container li:last-child {
-    border-left: 1px solid black;
+    border-left: 1px solid var(--cb-textSecondary);
     padding: 0 19px;
 }
 
@@ -22,4 +29,6 @@
 
 .nav-container a {
     text-decoration: none;
+    color: var(--cb-surfaceMain);
+    font-weight: 500;
 }

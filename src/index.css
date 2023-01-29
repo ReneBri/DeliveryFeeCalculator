@@ -9,6 +9,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --wolt-blue: #009de0;
+  --cb-textPrimary: rgba(32,33,37,1);
+  --cb-textSecondary: rgba(32,33,37,0.64);
+  --cb-textTertiary: rgba(32,33,37,0.4);
+  --cb-surfaceMain: rgba(255,255,255,1);
+  --cb-borderLight: rgba(32,33,37,0.12);
+}
+h1, h2, h3, p, span {
+  color: var(--cb-textPrimary);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

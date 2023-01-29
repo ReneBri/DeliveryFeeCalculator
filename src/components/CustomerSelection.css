@@ -9,7 +9,11 @@
 .item-container {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--cb-borderLight);
+}
+
+.item-container .price { 
+    color: var(--cb-textTertiary);
 }
 
 .item-container p {
@@ -17,7 +21,7 @@
 }
 
 .item-container:first-child {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--cb-borderLight);
 }
 
 .customer-selection-container::-webkit-scrollbar {

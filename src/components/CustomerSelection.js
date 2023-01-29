@@ -11,7 +11,7 @@ export default function CustomerSelection({customerSelection}) {
                 return (
                     <div className="item-container" key={Math.random()}>
                         <p>{item.item}</p>
-                        <p>{item.price}</p>
+                        <p className="price">{item.price}</p>
                     </div>
                 )
             })}
