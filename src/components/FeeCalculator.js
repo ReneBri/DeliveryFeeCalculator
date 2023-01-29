@@ -8,12 +8,17 @@ export default function FeeCalculator({customerSelection}) {
     const [numberOfItems, setNumberOfItems] = useState(0)
     const [orderTime, setOrderTime] = useState("")
     
+    // updates cartValue & numberOfItems when each new item is added
     useEffect(() => {
         if(customerSelection){
+            // sets size of cart based on arr.length
             setNumberOfItems(customerSelection.length)
-            setCartValue(customerSelection.reduce((acc, curr) => {
+            // gets cart value from array amd rounds to two decimal points
+            let valueStore = customerSelection.reduce((acc, curr) => {
                 return acc + curr.price
-            }, 0))
+            }, 0)
+            let valueToTwoDecimals = Number(valueStore).toFixed(2)
+            setCartValue(valueToTwoDecimals)
         }
     }, [customerSelection])
 
