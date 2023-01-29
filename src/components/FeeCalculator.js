@@ -3,17 +3,39 @@ import './FeeCalculator.css'
 
 export default function FeeCalculator({customerSelection}) {
 
+    // get a date string for automatic time/date detection on the order time
+    const date = new Date()
+    const timeArray = [
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes()
+    ]
+    // formats the time/date so that each with start with a 0 if under 10
+    const newArray = timeArray.map((item) => {
+        if(item < 10){
+            return item = "0" + item
+        }else{
+            return item
+        }
+    })
+    // creating this string to feed into the time/date input for an up to date initial value
+    const initialDateString = `${newArray[0]}-${newArray[1]}-${newArray[2]}T${newArray[3]}:${newArray[4]}`
+   
+
     // declare states for user inputs
     const [cartValue, setCartValue] = useState(0)
     const [deliveryDistance, setDeliveryDistance] = useState(0)
     const [numberOfItems, setNumberOfItems] = useState(0)
-    const [orderTime, setOrderTime] = useState("")
+    const [orderTime, setOrderTime] = useState(initialDateString)
 
     // declare states for delivery fee calculations
     const [cartValueCost, setCartValueCost] = useState(0)
     const [deliveryDistanceCost, setDeliveryDistanceCost] = useState(0)
     const [numberOfItemsCost, setNumberOfItemsCost] = useState(0)
-    const [orderTimeCost, setOrderTimeCost] = useState(0)
+    const [deliverySubTotal, setDeliverySubTotal] = useState(0)
+    const [fridayRushSurcharge, setFridayRushSurcharge] = useState(false)
     
     // updates cartValue & numberOfItems when each new item is added
     useEffect(() => {
@@ -29,17 +51,17 @@ export default function FeeCalculator({customerSelection}) {
         }
     }, [customerSelection])
 
-    // calculating delivery cost
+    // calculating various delivery costs
     useEffect(() => {
         // calculating the cart value fee
-        if(numberOfItems && cartValue < 10){
+        if(numberOfItems > 0 && cartValue < 10){
             let cost = Number(10 - cartValue).toFixed(2)
             setCartValueCost(cost)
         }else{
-            setCartValueCost(0)
+            setCartValueCost(Number(0).toFixed(2))
         }
         //calculating the number of items fee
-        if(numberOfItems && numberOfItems >= 5){
+        if(numberOfItems > 0 && numberOfItems >= 5){
             let cost = Number((numberOfItems - 4) * .50).toFixed(2)
             setNumberOfItemsCost(cost)
             if(numberOfItems >= 12){
@@ -47,7 +69,7 @@ export default function FeeCalculator({customerSelection}) {
             }
         }
         // calculating the delivery distance fee
-        if(numberOfItems && deliveryDistance < 1000){
+        if(numberOfItems > 0 && deliveryDistance < 1000){
             setDeliveryDistanceCost(2)
         }else if(numberOfItems && deliveryDistance > 1000){
             // declaring my recursive function here
@@ -62,11 +84,41 @@ export default function FeeCalculator({customerSelection}) {
             let cost = distanceRecursion(deliveryDistance - 1000)
             setDeliveryDistanceCost(2 + cost)
         }
-            
-        
-    }, [numberOfItems, cartValue, deliveryDistance])
+        // setting the Friday rush surcharge to true or false
+        if(numberOfItems > 0 && orderTime){
+            let date = new Date(orderTime)
+            let day = date.getDay()
+            let hour = date.getHours()
+            if(day === 5 && hour === 15 || hour === 16 || hour === 17 || hour === 18 || hour === 19 ){
+                setFridayRushSurcharge(true)
+            }else{
+                setFridayRushSurcharge(false)
+            }
+        }
 
-    // figuring out my recursion here
+        
+    }, [numberOfItems, cartValue, deliveryDistance, orderTime])
+
+    // calculating the delivery subtotal
+    useEffect(() => {
+        let subtotal = Number(cartValueCost) + Number(numberOfItemsCost) + Number(deliveryDistanceCost)
+        subtotal = Number(subtotal).toFixed(2)
+        if(cartValue >= 100){
+            setDeliverySubTotal("FREE")
+        }else if(fridayRushSurcharge){
+            subtotal = Number(subtotal *= 1.2).toFixed(2)
+            if(subtotal > 15){
+                setDeliverySubTotal(15)
+            }else{
+                setDeliverySubTotal(subtotal)
+            }
+        }else if(subtotal > 15){
+            setDeliverySubTotal(15)
+        }else{
+            setDeliverySubTotal(subtotal)
+        }
+        
+    }, [cartValueCost, numberOfItemsCost, deliveryDistanceCost, orderTime])
     
 
   return (
@@ -79,6 +131,7 @@ export default function FeeCalculator({customerSelection}) {
                     type="number" 
                     onChange={(e) => setCartValue(e.target.value)}
                     value={cartValue}
+                    min="0"
                 />
                 <p>{cartValueCost}</p>
             </label>
@@ -113,6 +166,7 @@ export default function FeeCalculator({customerSelection}) {
                     onChange={(e) => setOrderTime(e.target.value)}
                     value={orderTime}
                 />
+                <p>{orderTime}</p>
             </label>
             <button>submit</button>
         </form>
@@ -126,11 +180,11 @@ export default function FeeCalculator({customerSelection}) {
                     </tr>
                     <tr>
                         <td>Delivery:</td>
-                        <td>XXXXX€</td>
+                        <td>{deliverySubTotal}€</td>
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td>XXXXX€</td>
+                        <td>{Number(Number(deliverySubTotal) + Number(cartValue)).toFixed(2)}€</td>
                     </tr>
                 </tbody>
             </table>
