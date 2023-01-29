@@ -10,7 +10,9 @@
     background-image: url('../../../public/images/burger-shop.webp');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
+    /* this background-position will need to be adjusted for smaller screens */
+    background-position: 0px -100px;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;

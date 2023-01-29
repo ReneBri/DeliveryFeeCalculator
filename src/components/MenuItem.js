@@ -21,8 +21,8 @@ export default function MenuItem({items, setCustomerSelection, customerSelection
                     <div className="item-text">
                         <h3>{item.item}</h3>
                         <hr></hr>
-                        <p>{item.description}</p>
-                        <p>${item.price}</p>
+                        <p className="description">{item.description}</p>
+                        <p className="price">${item.price}</p>
                         <button onClick={() => handleClick(item)}>Add Item</button>
                     </div>
                     <img src={item.imgUrl} alt="burger-img"/>     

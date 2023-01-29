@@ -9,7 +9,7 @@
 }
 
 .card {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--cb-borderLight);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,13 +17,21 @@
 }
 
 .card:last-child {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--cb-borderLight);
 }
 
 .card img {
     position: relative;
     background: black;
     max-height: 200px;
+}
+
+.card .description {
+    color: var(--cb-textSecondary);
+}
+
+.card .price {
+    color: var(--wolt-blue);
 }
 
 .item-text {
