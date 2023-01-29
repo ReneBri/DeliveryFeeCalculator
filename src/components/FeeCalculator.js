@@ -89,15 +89,19 @@ export default function FeeCalculator({customerSelection}) {
             let date = new Date(orderTime)
             let day = date.getDay()
             let hour = date.getHours()
-            if(day === 5 && hour === 15 || hour === 16 || hour === 17 || hour === 18 || hour === 19 ){
+            if(day === 5){
+                if(hour === 15 || hour === 16 || hour === 17 || hour === 18){
                 setFridayRushSurcharge(true)
+                }
             }else{
                 setFridayRushSurcharge(false)
             }
+                
+
         }
 
         
-    }, [numberOfItems, cartValue, deliveryDistance, orderTime])
+    }, [numberOfItems, cartValue, deliveryDistance, orderTime, fridayRushSurcharge])
 
     // calculating the delivery subtotal
     useEffect(() => {
@@ -118,7 +122,7 @@ export default function FeeCalculator({customerSelection}) {
             setDeliverySubTotal(subtotal)
         }
         
-    }, [cartValueCost, numberOfItemsCost, deliveryDistanceCost, orderTime])
+    }, [cartValueCost, numberOfItemsCost, deliveryDistanceCost, orderTime, fridayRushSurcharge])
     
 
   return (
