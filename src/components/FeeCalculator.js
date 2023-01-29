@@ -3,17 +3,17 @@ import './FeeCalculator.css'
 
 export default function FeeCalculator({customerSelection}) {
 
-    // get a date string for automatic time/date detection on the order time
+    // gets date values for automatic time/date detection on the order time
     const date = new Date()
     const timeArray = [
         date.getFullYear(),
         date.getMonth() + 1,
         date.getDate(),
         date.getHours(),
-        date.getMinutes()
+        date.getMinutes()   
     ]
     // formats the time/date so that each with start with a 0 if under 10
-    const newArray = timeArray.map((item) => {
+    const formattedTimeArray = timeArray.map((item) => {
         if(item < 10){
             return item = "0" + item
         }else{
@@ -21,7 +21,7 @@ export default function FeeCalculator({customerSelection}) {
         }
     })
     // creating this string to feed into the time/date input for an up to date initial value
-    const initialDateString = `${newArray[0]}-${newArray[1]}-${newArray[2]}T${newArray[3]}:${newArray[4]}`
+    const initialDateString = `${formattedTimeArray[0]}-${formattedTimeArray[1]}-${formattedTimeArray[2]}T${formattedTimeArray[3]}:${formattedTimeArray[4]}`
    
 
     // declare states for user inputs
@@ -188,7 +188,7 @@ export default function FeeCalculator({customerSelection}) {
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td>{Number(Number(deliverySubTotal) + Number(cartValue)).toFixed(2)}€</td>
+                        <td>{deliverySubTotal !== "FREE" ? Number(Number(deliverySubTotal) + Number(cartValue)).toFixed(2) : cartValue}€</td>
                     </tr>
                 </tbody>
             </table>
