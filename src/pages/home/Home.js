@@ -6,6 +6,8 @@ import CustomerSelection from '../../components/CustomerSelection'
 
 export default function Home() {
 
+    const [isFavourite, setIsFavourite] = useState(false)
+
     const items = [
         {
             item: "Chicken Burger",
@@ -47,6 +49,24 @@ export default function Home() {
             <div className="hero-container">
                 <h1>Rene's Burgers</h1>
                 <p>Yummm! Check out our delicious new food!</p>
+                <div className="info-bar">
+                    <div className="lefthand-container">
+                        <div className="happiness-meter">
+                            <i className="material-symbols-outlined gold">star</i>
+                            <p>10/10</p>
+                        </div>
+                        <div className="price-meter">
+                            <i className="material-symbols-outlined">euro</i>
+                            <i className="material-symbols-outlined">euro</i>
+                            <i className="material-symbols-outlined">euro</i>
+                            <i className="material-symbols-outlined faint">euro</i>
+                            <i className="material-symbols-outlined faint">euro</i>
+                        </div>
+                    </div>
+                <i 
+                    className={isFavourite ? "material-symbols-outlined red fav" : "material-symbols-outlined faint fav"}
+                    onClick={(e) => {isFavourite ? setIsFavourite(false) : setIsFavourite(true)}}>favorite</i>
+                </div>
             </div>
             <div className="order-body">
                 <CustomerSelection customerSelection={customerSelection} />
