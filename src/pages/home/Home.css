@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 60px;
+    padding: 70px 60px 20px 60px;
 }
 
 .hero-container {
     height: 70vh;
+    position: relative;
     background-image: url('../../../public/images/burger-shop.webp');
     background-repeat: no-repeat;
     background-size: cover;
@@ -32,4 +33,58 @@
     background-color: rgba(255, 255, 255, 0.7);
     padding: 5px 30px 5px 30px;
     font-weight: 500;
+}
+
+.info-bar {
+    position: absolute;
+    width: 80%;
+    max-width: 1000px;
+    height: 50px;
+    background-color: var(--cb-surfaceMain);
+    border: 2px solid var(--wolt-blue);
+    border-radius: 20px;
+    bottom: -35px;
+    box-shadow: -1px 5px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 80px;
+}
+
+.info-bar .fav {
+    font-size: 3em;
+}
+
+.faint {
+    color: var(--cb-textTertiary)
+}
+
+.red {
+    color: red;
+}
+
+.gold {
+    color: gold;
+}
+
+.info-bar i {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    font-size: 1.75em;
+}
+
+.lefthand-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 240px;
+    align-items: center;
+}
+
+.lefthand-container  p {
+    padding: 0 5px;
+    margin: 0;
 }
