@@ -112,13 +112,16 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
         }
 
         // setting the Friday rush surcharge to true or false
-        if(numberOfItems > 0 && orderTime){
+        if(orderTime){
             let date = new Date(orderTime)
             let day = date.getDay()
             let hour = date.getHours()
+            
             if(day === 5){
                 if(hour === 15 || hour === 16 || hour === 17 || hour === 18){
-                setFridayRushSurcharge(true)
+                    setFridayRushSurcharge(true)
+                }else{
+                    setFridayRushSurcharge(false)
                 }
             }else{
                 setFridayRushSurcharge(false)
@@ -136,12 +139,12 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
         }else if(fridayRushSurcharge){
             subtotal = Number(subtotal *= 1.2).toFixed(2)
             if(subtotal > 15){
-                setDeliverySubTotal(15)
+                setDeliverySubTotal(Number(15).toFixed(2))
             }else{
                 setDeliverySubTotal(subtotal)
             }
         }else if(subtotal > 15){
-            setDeliverySubTotal(15)
+            setDeliverySubTotal(Number(15).toFixed(2))
         }else{
             setDeliverySubTotal(subtotal)
         }
@@ -214,7 +217,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
                     </tr>
                     <tr>
                         <td>Delivery:</td>
-                        <td>{deliverySubTotal}€</td>
+                        <td>{deliverySubTotal !== "FREE" ? deliverySubTotal + "€" : deliverySubTotal}</td>
                     </tr>
                     <tr>
                         <td>Total:</td>

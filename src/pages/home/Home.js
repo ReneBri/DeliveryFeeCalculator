@@ -42,7 +42,6 @@ export default function Home() {
 ]
 
     const [customerSelection, setCustomerSelection] = useState(null)
-    console.log(customerSelection)
     
     return (
         <div className="content-container">
