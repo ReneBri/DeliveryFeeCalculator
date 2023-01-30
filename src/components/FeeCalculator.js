@@ -1,34 +1,39 @@
 import { useState, React, useEffect } from 'react'
 import './FeeCalculator.css'
 
-export default function FeeCalculator({customerSelection}) {
+export default function FeeCalculator({customerSelection, setCustomerSelection}) {
 
     // gets date values for automatic time/date detection on the order time
-    const date = new Date()
-    const timeArray = [
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes()   
-    ]
-    // formats the time/date so that each with start with a 0 if under 10
-    const formattedTimeArray = timeArray.map((item) => {
-        if(item < 10){
-            return item = "0" + item
-        }else{
-            return item
-        }
-    })
-    // creating this string to feed into the time/date input for an up to date initial value
-    const initialDateString = `${formattedTimeArray[0]}-${formattedTimeArray[1]}-${formattedTimeArray[2]}T${formattedTimeArray[3]}:${formattedTimeArray[4]}`
+    const getInitialDateTime = () => {
+        
+        const date = new Date()
+        const timeArray = [
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes()   
+        ]
+        // formats the time/date so that each will start with a 0 if under 10
+        const formattedTimeArray = timeArray.map((item) => {
+            if(item < 10){
+                return item = "0" + item
+            }else{
+                return item
+            }
+        })
+        // creating this string to feed into the time/date input for an up to date initial value
+        return `${formattedTimeArray[0]}-${formattedTimeArray[1]}-${formattedTimeArray[2]}T${formattedTimeArray[3]}:${formattedTimeArray[4]}`
+}
+    
    
 
     // declare states for user inputs
     const [cartValue, setCartValue] = useState(0)
     const [deliveryDistance, setDeliveryDistance] = useState(0)
     const [numberOfItems, setNumberOfItems] = useState(0)
-    const [orderTime, setOrderTime] = useState(initialDateString)
+    const [orderTime, setOrderTime] = useState(getInitialDateTime)
+    const [isTestMode, setIsTestMode] = useState(false)
 
     // declare states for delivery fee calculations
     const [cartValueCost, setCartValueCost] = useState(0)
@@ -36,7 +41,21 @@ export default function FeeCalculator({customerSelection}) {
     const [numberOfItemsCost, setNumberOfItemsCost] = useState(0)
     const [deliverySubTotal, setDeliverySubTotal] = useState(0)
     const [fridayRushSurcharge, setFridayRushSurcharge] = useState(false)
+
+    // handling button for test mode
+    const handleTestMode = () => {
+        isTestMode ? setIsTestMode(false) : setIsTestMode(true)
+    }
+
+    // handling button for cart reset
+    const handleCartReset = () => {
+        setCustomerSelection([])
+        setDeliveryDistance(0)
+        setOrderTime(getInitialDateTime)
+        setDeliveryDistanceCost(0)
+    }
     
+
     // updates cartValue & numberOfItems when each new item is added
     useEffect(() => {
         if(customerSelection){
@@ -51,8 +70,10 @@ export default function FeeCalculator({customerSelection}) {
         }
     }, [customerSelection])
 
+
     // calculating various delivery costs
     useEffect(() => {
+
         // calculating the cart value fee
         if(numberOfItems > 0 && cartValue < 10){
             let cost = Number(10 - cartValue).toFixed(2)
@@ -60,6 +81,7 @@ export default function FeeCalculator({customerSelection}) {
         }else{
             setCartValueCost(Number(0).toFixed(2))
         }
+
         //calculating the number of items fee
         if(numberOfItems > 0 && numberOfItems >= 5){
             let cost = Number((numberOfItems - 4) * .50).toFixed(2)
@@ -68,6 +90,7 @@ export default function FeeCalculator({customerSelection}) {
                 setNumberOfItemsCost(Number.parseFloat(cost) + 1.20)
             }
         }
+
         // calculating the delivery distance fee
         if(numberOfItems > 0 && deliveryDistance < 1000){
             setDeliveryDistanceCost(2)
@@ -84,6 +107,7 @@ export default function FeeCalculator({customerSelection}) {
             let cost = distanceRecursion(deliveryDistance - 1000)
             setDeliveryDistanceCost(2 + cost)
         }
+
         // setting the Friday rush surcharge to true or false
         if(numberOfItems > 0 && orderTime){
             let date = new Date(orderTime)
@@ -96,12 +120,9 @@ export default function FeeCalculator({customerSelection}) {
             }else{
                 setFridayRushSurcharge(false)
             }
-                
-
         }
-
-        
     }, [numberOfItems, cartValue, deliveryDistance, orderTime, fridayRushSurcharge])
+
 
     // calculating the delivery subtotal
     useEffect(() => {
@@ -127,6 +148,10 @@ export default function FeeCalculator({customerSelection}) {
 
   return (
     <div className="fee-calculator">
+
+        <button onClick={handleTestMode}>Test Mode</button>
+        <button onClick={handleCartReset}>Reset Cart</button>
+
         <form>
 
             <label>
@@ -137,7 +162,7 @@ export default function FeeCalculator({customerSelection}) {
                     value={cartValue}
                     min="0"
                 />
-                <p>{cartValueCost}</p>
+                <p>{isTestMode && cartValueCost + "€"}</p>
             </label>
 
             <label>
@@ -150,7 +175,7 @@ export default function FeeCalculator({customerSelection}) {
                     value={deliveryDistance}
                 />
                 <p>{deliveryDistance}m</p>
-                <p>{deliveryDistanceCost}€</p>
+                <p>{isTestMode && deliveryDistanceCost + "€"}</p>
             </label>
 
             <label>
@@ -160,7 +185,7 @@ export default function FeeCalculator({customerSelection}) {
                     onChange={(e) => setNumberOfItems(e.target.value)}
                     value={numberOfItems}
                 />
-                <p>{numberOfItemsCost}</p>
+                <p>{isTestMode && numberOfItemsCost + "€"}</p>
             </label>
 
             <label>
@@ -170,10 +195,10 @@ export default function FeeCalculator({customerSelection}) {
                     onChange={(e) => setOrderTime(e.target.value)}
                     value={orderTime}
                 />
-                <p>{orderTime}</p>
+                <p>{isTestMode && "Friday surcharge: " + fridayRushSurcharge.toString()}</p>
             </label>
-            <button>submit</button>
         </form>
+        
 
         <div className="delivery-totals">
             <table>
