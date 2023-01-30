@@ -35,3 +35,8 @@
     color: var(--cb-surfaceMain);
     font-weight: 500;
 }
+
+
+.nav-container .active {
+    text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+.instruction-container {
+    max-width: 700px;
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.7em;
+    
+}
+
+.instruction-container h1 {
+    padding: 20px;
+}
+
+.instructions-content {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    border-left: 1px solid var(--cb-borderLight);
+    border-right: 1px solid var(--cb-borderLight);
+}

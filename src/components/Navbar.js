@@ -7,7 +7,7 @@ export default function Navbar() {
         <h2>Wolt</h2>
         <ul>
             <li><NavLink to="/">Menu</NavLink></li>
-            <li><NavLink to="/create">Create New Item</NavLink></li>
+            <li><NavLink to="/instructions">Assignment Instructions</NavLink></li>
         </ul>
     </nav>
   )
