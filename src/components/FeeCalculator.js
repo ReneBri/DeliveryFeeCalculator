@@ -29,7 +29,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
    
 
     // declare states for user inputs
-    const [cartValue, setCartValue] = useState(0)
+    const [cartValue, setCartValue] = useState(Number(0).toFixed(2))
     const [deliveryDistance, setDeliveryDistance] = useState(0)
     const [numberOfItems, setNumberOfItems] = useState(0)
     const [orderTime, setOrderTime] = useState(getInitialDateTime)
@@ -49,10 +49,13 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
 
     // handling button for cart reset
     const handleCartReset = () => {
-        setCustomerSelection([])
+        setCustomerSelection(null)
         setDeliveryDistance(0)
         setOrderTime(getInitialDateTime)
         setDeliveryDistanceCost(0)
+        setCartValue(Number(0).toFixed(2))
+        setNumberOfItems(0)
+        setNumberOfItemsCost(0)
     }
     
 
@@ -149,10 +152,12 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
   return (
     <div className="fee-calculator">
 
-        <button onClick={handleTestMode}>Test Mode</button>
-        <button onClick={handleCartReset}>Reset Cart</button>
-
-        <form>
+        <div className="button-container">
+            <button onClick={handleTestMode}>Test Mode</button>
+            <button onClick={handleCartReset}>Reset Cart</button>
+        </div>
+    
+        <form className="delivery-fee-calc">
 
             <label>
                 <span>cart value:</span>
