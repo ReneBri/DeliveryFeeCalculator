@@ -48,7 +48,7 @@ export default function Home() {
         <div className="content-container">
             <div className="hero-container">
                 <h1>Rene's Burgers</h1>
-                <p>Yummm! Check out our delicious new food!</p>
+                <p>The Best Damn Burgers in all of Berlin!!</p>
                 <div className="info-bar">
                     <div className="lefthand-container">
                         <div className="happiness-meter">

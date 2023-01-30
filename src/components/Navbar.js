@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="nav-container">
         <h2>Wolt</h2>
         <ul>
-            <li><NavLink to="/">To Menu</NavLink></li>
+            <li><NavLink to="/">Menu</NavLink></li>
             <li><NavLink to="/create">Create New Item</NavLink></li>
         </ul>
     </nav>

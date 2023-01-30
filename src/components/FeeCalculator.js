@@ -160,7 +160,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
         <form className="delivery-fee-calc">
 
             <label>
-                <span>cart value:</span>
+                <span>Cart Value:</span>
                 <input 
                     type="number" 
                     onChange={(e) => setCartValue(e.target.value)}
@@ -171,7 +171,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
             </label>
 
             <label>
-                <span>delivery distance:</span>
+                <span>Delivery Distance:</span>
                 <input 
                     type="range" 
                     min="0" 
@@ -184,7 +184,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
             </label>
 
             <label>
-                <span>items in cart:</span>
+                <span>Items in Cart:</span>
                 <input 
                     type="number" 
                     onChange={(e) => setNumberOfItems(e.target.value)}
@@ -194,7 +194,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
             </label>
 
             <label>
-                <span>order time:</span>
+                <span>Order Time:</span>
                 <input 
                     type="datetime-local" 
                     onChange={(e) => setOrderTime(e.target.value)}

@@ -11,6 +11,7 @@ body {
 
 :root {
   --wolt-blue: #009de0;
+  --wolt-blue-dark: #007bb0;
   --cb-textPrimary: rgba(32,33,37,1);
   --cb-textSecondary: rgba(32,33,37,0.64);
   --cb-textTertiary: rgba(32,33,37,0.4);
@@ -19,6 +20,12 @@ body {
 }
 h1, h2, h3, p, span {
   color: var(--cb-textPrimary);
+  font-family: 'Signika Negative';
+}
+
+h1 {
+  font-family: 'Signika Negative';
+  font-weight: 1000;
 }
 
 code {
@@ -44,5 +51,5 @@ button {
 
 button:hover {
   transition: 0.5s;
-  background-color: #0072a2;
+  background-color: var(--wolt-blue-dark);
 }
