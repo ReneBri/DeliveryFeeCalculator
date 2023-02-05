@@ -1,5 +1,6 @@
+// styles
 import './CustomerSelection.css'
-import MenuItem from './MenuItem'
+
 
 export default function CustomerSelection({customerSelection}) {
   return (

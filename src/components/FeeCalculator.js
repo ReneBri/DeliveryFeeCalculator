@@ -1,5 +1,9 @@
+// hooks
 import { useState, React, useEffect } from 'react'
+
+// styles
 import './FeeCalculator.css'
+
 
 export default function FeeCalculator({customerSelection, setCustomerSelection}) {
 

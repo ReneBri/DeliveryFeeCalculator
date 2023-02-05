@@ -18,7 +18,8 @@ body {
   --cb-surfaceMain: rgba(255,255,255,1);
   --cb-borderLight: rgba(32,33,37,0.12);
 }
-h1, h2, h3, p, span {
+
+h1, h2, h3, p, span, td {
   color: var(--cb-textPrimary);
   font-family: 'Signika Negative';
 }

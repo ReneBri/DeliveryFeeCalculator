@@ -1,8 +1,13 @@
-import React, { useCallback, useEffect } from 'react'
+// react fragment
+import React from 'react'
+
+// styles
 import './MenuItem.css'
+
 
 export default function MenuItem({items, setCustomerSelection, customerSelection}) {
 
+    // adds item to customer cart
     const handleClick = (item) => {
         setCustomerSelection((prevSelection) => {
             if(prevSelection == null){
@@ -11,8 +16,9 @@ export default function MenuItem({items, setCustomerSelection, customerSelection
             return [...prevSelection, item]
             }
         })
-    console.log(customerSelection)}
+    }
 
+    
   return (
     <div className="menu-container">
         {items.map((item) => (

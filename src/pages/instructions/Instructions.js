@@ -1,4 +1,6 @@
+// styles
 import './Instructions.css'
+
 
 export default function Instructions() {
   return (
