@@ -99,6 +99,12 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
         }
 
         // calculating the delivery distance fee
+        // this here is what's causing the warning when it compiles and is the perfect usecase for TypeScript
+        // the integers here are constantly switching between integers and strings. I think because useState
+        // defaults to strings? But using a === does not always match the numberOfItems state change.
+        if(numberOfItems == 0){
+            setDeliveryDistanceCost(0)
+        }
         if(numberOfItems > 0 && deliveryDistance < 1000){
             setDeliveryDistanceCost(2)
         }else if(numberOfItems && deliveryDistance > 1000){
