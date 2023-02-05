@@ -153,7 +153,7 @@ export default function FeeCalculator({customerSelection, setCustomerSelection})
             setDeliverySubTotal(subtotal)
         }
         
-    }, [cartValueCost, numberOfItemsCost, deliveryDistanceCost, orderTime, fridayRushSurcharge])
+    }, [cartValueCost, numberOfItemsCost, deliveryDistanceCost, orderTime, fridayRushSurcharge, cartValue])
     
 
   return (
